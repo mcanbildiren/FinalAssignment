@@ -1,0 +1,20 @@
+﻿@{
+	ViewData["Title"] = "DetailedPage";
+}
+
+@model PostViewModel
+
+<div class="text-center">
+	<img src="/Pictures/@Model.Photo" class="card-img-top" alt="..." style="height: 300px; width:auto;">
+</div>
+
+<div class="text-center">
+	<h1>@Model.Title</h1>
+	<h5>Yazan: @Model.Publisher</h5>
+</div>
+
+
+<div class="col-md-8 offset-2 text-center">
+	<p>@Model.Text</p>
+</div>
+

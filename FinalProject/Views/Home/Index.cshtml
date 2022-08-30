@@ -1,0 +1,79 @@
+﻿@{
+	ViewData["Title"] = "Anasayfa";
+}
+
+@model List<PostViewModel>
+
+<div class="text-center first">
+	<h1>Postlar</h1>
+</div>
+
+<div class="row">
+	@foreach (var item in Model)
+	{
+		<div class="card cards">
+			<img src="/Pictures/@item.Photo" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h4 class="card-title title">@item.Title</h4>
+				<h5 class="card-title">@item.Category.Name</h5>
+				<p class="card-text text">
+					@item.Text
+				</p>
+				<a asp-controller="Home" asp-action="DetailedPage" asp-route-id="@item.Id" class="btn btn-primary">Devamını oku</a>
+			</div>
+		</div>
+	}
+</div>
+
+
+
+<div class="col-md-2 offset-5">
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+
+			<li class="page-item @(ViewBag.page == 1 ? "disabled":"")">
+				<a class="page-link" asp-controller="Home" asp-action="Index" asp-route-page="@(ViewBag.page - 1)">Previous</a>
+			</li>
+
+			@for (int i = 1; i <= @ViewBag.totalPage; i++)
+			{
+				
+				<li class="page-item">
+					<a asp-controller="Home" asp-action="Index" asp-route-page="@i" class="page-link">@i</a>
+				</li>
+			}
+
+			<li class="page-item @(ViewBag.page == ViewBag.totalPage ? "disabled":"")">
+				<a class="page-link" asp-controller="Home" asp-action="Index" asp-route-page="@(ViewBag.page + 1)">Next</a>
+			</li>
+
+		</ul>
+	</nav>
+</div>
+
+<style>
+	.text {
+		width: 250px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.title {
+		width: 250px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.card {
+		width: 18rem;
+		margin: 0 auto;
+		float: none;
+		margin-bottom: 10px;
+	}
+
+	.first {
+		margin-bottom: 25px;
+	}
+</style>
